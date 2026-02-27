@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hai quốc gia, một bầu trờia</title>
+
+<script data-goatcounter="https://exelumare.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(to top,#0f2027,#203a43,#2c5364);
+    color:white;
+    text-align:center;
+    overflow:hidden;
+    animation:pageFade 2s ease;
+}
+
+@keyframes pageFade{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+.container{
+    position:relative;
+    z-index:6;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(14px);
+    padding:45px;
+    border-radius:22px;
+    width:90%;
+    max-width:550px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+p{line-height:1.7;margin-bottom:18px;}
+
+#timeTogether{
+    font-weight:bold;
+    font-size:1.2em;
+    color:#ffd369;
+}
+
+/* ===== BULAN ===== */
+.moon{
+    position:fixed;
+    top:60px;
+    right:80px;
+    width:90px;
+    height:90px;
+    background:radial-gradient(circle at 30% 30%,#fff,#ddd 60%,#bbb);
+    border-radius:50%;
+    box-shadow:0 0 50px rgba(255,255,255,0.7);
+    z-index:1;
+}
+
+/* ===== AWAN BARU ===== */
+.cloud{
+    position:fixed;
+    font-size:70px;
+    opacity:0.18;
+    animation:cloudMove linear infinite;
+    z-index:2;
+}
+@keyframes cloudMove{
+    from{transform:translateX(-300px)}
+    to{transform:translateX(120vw)}
+}
+
+/* ===== PESAWAT ===== */
+.plane{
+    position:fixed;
+    top:14%;
+    left:-150px;
+    font-size:42px;
+    animation:flyAcross 34s ease-in-out infinite;
+    opacity:0.95;
+    z-index:4;
+}
+
+@keyframes flyAcross{
+    0%   { transform:translateX(0); opacity:0; text-shadow:0 0 8px rgba(255,255,255,0.4);}
+    15%  { opacity:1; }
+    40%  { transform:translateX(50vw); }
+    55%  { transform:translateX(60vw); text-shadow:0 0 25px rgba(255,255,255,1),
+                                            0 0 45px rgba(255,255,255,0.6);}
+    75%  { transform:translateX(90vw); text-shadow:0 0 12px rgba(255,255,255,0.6);}
+    100% { transform:translateX(120vw); opacity:0; }
+}
+
+/* ===== BINTANG ===== */
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:3;
+}
+.star{
+    position:absolute;
+    color:white;
+    animation:twinkle 4s infinite ease-in-out;
+    opacity:0;
+}
+@keyframes twinkle{
+    0%{opacity:0;transform:scale(0.5)}
+    50%{opacity:1;transform:scale(1)}
+    100%{opacity:0;transform:scale(0.5)}
+}
+
+/* ===== OMBAK ===== */
+.ocean{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:180px;
+    overflow:hidden;
+    z-index:1;
+}
+.wave{
+    position:absolute;
+    bottom:0;
+    width:200%;
+    height:100%;
+    background:url('data:image/svg+xml;utf8,\
+    <svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">\
+    <path d="M0,60 C200,120 400,0 600,60 C800,120 1000,0 1200,60 L1200,120 L0,120 Z" fill="%23ffffff" opacity="0.25"/>\
+    </svg>') repeat-x;
+    background-size:1200px 120px;
+    animation:waveMove 15s linear infinite;
+}
+.wave:nth-child(2){animation-duration:22s;opacity:0.35}
+.wave:nth-child(3){animation-duration:30s;opacity:0.2}
+
+@keyframes waveMove{
+    from{transform:translateX(0)}
+    to{transform:translateX(-1200px)}
+}
+
+.sea-glow{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:200px;
+    background:radial-gradient(ellipse at center bottom,rgba(255,255,255,0.15),transparent 70%);
+}
+
+/* ===== MUSIK ===== */
+.music-player{margin-top:25px}
+#musicBtn{
+    background:rgba(255,255,255,0.15);
+    border:1px solid rgba(255,255,255,0.4);
+    padding:10px 20px;
+    border-radius:25px;
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+    transition:0.3s;
+}
+#musicBtn:hover{background:rgba(255,255,255,0.3)}
+
+#finalQuote{
+    opacity:0;
+    margin-top:25px;
+    font-style:italic;
+    transition:opacity 3s ease;
+}
+</style>
+</head>
+
+<body>
+
+<div class="moon"></div>
+
+<!-- Awan -->
+<div class="cloud" style="top:25%; animation-duration:90s;">☁</div>
+<div class="cloud" style="top:55%; animation-duration:120s;">☁</div>
+
+<div class="plane">✈</div>
+<div class="stars" id="starsContainer"></div>
+
+<!-- Konten kamu tetap utuh -->
+<div class="container">
+<h2>🌏 Indonesia — Vietnam 🌏</h2>
+<p>Hai Trang,</p>
+
+<p>Chúng ta từng ở hai quốc gia khác nhau, 
+và có lẽ con đường của chúng ta cũng khác nhau.</p>
+
+<p>Cảm ơn vì quãng thời gian đã đi cùng nhau.
+Dù ngắn hay dài, nó vẫn là một phần của hành trình.</p>
+
+<p>Nếu khoảng cách là điều bạn cần,
+mình tôn trọng điều đó.</p>
+
+<p>Kể từ ngày đó đến nay</p>
+<p id="startDate"></p>
+
+<p>Thời gian vẫn trôi,</p>
+<p>và mình sẽ bước tiếp theo cách riêng của mình.</p>
+
+<div id="timeTogether">Memuat...</div>
+
+<div id="finalQuote">
+I will quietly step away,<br>
+wishing you nothing but peace.
+</div>
+
+<div class="music-player">
+<button id="musicBtn">🎵 Putar Musik</button>
+<audio id="bgMusic" loop preload="auto">
+<source src="https://drive.google.com/uc?export=download&id=1dM9LYEI_LPWuvSnPSU_apO9f5bpVV5V7" type="audio/mpeg">
+</audio>
+</div>
+</div>
+
+<div class="ocean">
+<div class="wave"></div>
+<div class="wave"></div>
+<div class="wave"></div>
+</div>
+<div class="sea-glow"></div>
+
+<script>
+const startDate=new Date(2025,7,24);
+const formatter = new Intl.DateTimeFormat('vi-VN', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+});
+
+const parts = formatter.formatToParts(startDate);
+
+let day = parts.find(p => p.type === 'day').value;
+let month = parts.find(p => p.type === 'month').value;
+let year = parts.find(p => p.type === 'year').value;
+
+document.getElementById('startDate').textContent =
+`${day}, ${month}, ${year}`;
+
+function updateTime(){
+const now=new Date();
+const diff=now-startDate;
+const days=Math.floor(diff/(1000*60*60*24));
+const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+const minutes=Math.floor((diff%(1000*60*60))/(1000*60));
+const seconds=Math.floor((diff%(1000*60))/1000);
+document.getElementById('timeTogether').innerHTML=
+`${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`;
+}
+setInterval(updateTime,1000);
+updateTime();
+
+/* Bintang */
+const starsContainer=document.getElementById('starsContainer');
+function createStar(){
+const star=document.createElement('div');
+star.classList.add('star');
+star.innerHTML='✨';
+star.style.left=Math.random()*100+'vw';
+star.style.top=Math.random()*100+'vh';
+star.style.fontSize=(Math.random()*10+10)+'px';
+star.style.animationDelay=Math.random()*4+'s';
+starsContainer.appendChild(star);
+setTimeout(()=>star.remove(),4000);
+}
+setInterval(createStar,500);
+
+/* Musik */
+const music=document.getElementById("bgMusic");
+const musicBtn=document.getElementById("musicBtn");
+musicBtn.addEventListener("click",()=>{
+if(music.paused){
+music.play();
+musicBtn.textContent="⏸ Hentikan Musik";
+}else{
+music.pause();
+musicBtn.textContent="🎵 Putar Musik";
+}
+});
+
+/* Quote muncul */
+setTimeout(()=>{
+document.getElementById("finalQuote").style.opacity=1;
+},6000);
+</script>
+
+</body>
+</html>
